@@ -1,0 +1,4 @@
+tf/.terraform/
+tf/backend.conf
+lambda/bin/bootstrap
+lambda/objectlambda.zip
