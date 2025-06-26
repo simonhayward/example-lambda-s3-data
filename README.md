@@ -8,6 +8,15 @@
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 sudo yum install -y git go terraform
 
+vi ~/.gitconfig
+[user]
+        name = <NAME>
+        email = <EMAIL>
+[init]
+        defaultBranch = main
+[credential]
+        helper = cache --timeout=3600
+
 curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --ssh --auth-key=tskey-auth-<AUTH-KEY>
 
 # https://github.com/tailscale/tailscale/issues/7816#issuecomment-1499909112
@@ -29,6 +38,7 @@ aws_secret_access_key = <KEY>
 
 chmod 0600 ~/.aws/*
 
+git clone https://github.com/simonhayward/example-lambda-s3-data.git
 cd tf/
 vi backend.conf
 
