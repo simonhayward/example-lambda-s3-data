@@ -18,6 +18,7 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinu
 sudo yum install -y git go terraform
 
 # repo
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 vi ~/.gitconfig
 [user]
         name = <NAME>
