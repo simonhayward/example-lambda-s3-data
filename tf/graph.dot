@@ -1,0 +1,25 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "data.archive_file.objectlambda_zip" [label="data.archive_file.objectlambda_zip"];
+  "data.aws_iam_policy.AmazonS3ObjectLambdaExecutionRolePolicy" [label="data.aws_iam_policy.AmazonS3ObjectLambdaExecutionRolePolicy"];
+  "data.aws_iam_policy_document.assume_role" [label="data.aws_iam_policy_document.assume_role"];
+  "aws_cloudwatch_log_group.ObjectLambdaDev" [label="aws_cloudwatch_log_group.ObjectLambdaDev"];
+  "aws_iam_role.ObjectLambdaDev" [label="aws_iam_role.ObjectLambdaDev"];
+  "aws_iam_role_policy_attachment.ObjectLambdaDev" [label="aws_iam_role_policy_attachment.ObjectLambdaDev"];
+  "aws_lambda_function.ObjectLambdaDev" [label="aws_lambda_function.ObjectLambdaDev"];
+  "aws_s3_access_point.LambdaObjectAccessPoint" [label="aws_s3_access_point.LambdaObjectAccessPoint"];
+  "aws_s3_bucket.data" [label="aws_s3_bucket.data"];
+  "aws_s3control_object_lambda_access_point.ObjectLambdaDev" [label="aws_s3control_object_lambda_access_point.ObjectLambdaDev"];
+  "null_resource.objectlambda_bin" [label="null_resource.objectlambda_bin"];
+  "data.archive_file.objectlambda_zip" -> "null_resource.objectlambda_bin";
+  "aws_cloudwatch_log_group.ObjectLambdaDev" -> "aws_lambda_function.ObjectLambdaDev";
+  "aws_iam_role.ObjectLambdaDev" -> "data.aws_iam_policy_document.assume_role";
+  "aws_iam_role_policy_attachment.ObjectLambdaDev" -> "data.aws_iam_policy.AmazonS3ObjectLambdaExecutionRolePolicy";
+  "aws_iam_role_policy_attachment.ObjectLambdaDev" -> "aws_iam_role.ObjectLambdaDev";
+  "aws_lambda_function.ObjectLambdaDev" -> "data.archive_file.objectlambda_zip";
+  "aws_lambda_function.ObjectLambdaDev" -> "aws_iam_role.ObjectLambdaDev";
+  "aws_s3_access_point.LambdaObjectAccessPoint" -> "aws_s3_bucket.data";
+  "aws_s3control_object_lambda_access_point.ObjectLambdaDev" -> "aws_lambda_function.ObjectLambdaDev";
+  "aws_s3control_object_lambda_access_point.ObjectLambdaDev" -> "aws_s3_access_point.LambdaObjectAccessPoint";
+}
