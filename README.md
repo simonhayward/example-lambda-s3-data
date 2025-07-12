@@ -55,3 +55,5 @@ region = "<REGION>"
 terraform init -backend-config=backend.conf
 
 ```
+
+![graph](tf/graph.png)
