@@ -4,12 +4,13 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"os"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	_ "github.com/marcboeker/go-duckdb"
-	"os"
 )
 
 var db *sql.DB
@@ -55,7 +56,7 @@ func handler(ctx context.Context, event events.S3ObjectLambdaEvent) error {
 func main() {
 	var err error
 
-	db, err = sql.Open("duckdb", "?access_mode=READ_WRITE")
+	db, err = sql.Open("duckdb", "?access_mode=READ_ONLY")
 	check(err)
 	defer db.Close()
 	check(db.Ping())
